@@ -24,7 +24,7 @@ function App() {
 
             </div>
             <footer className="blockquote-footer text-center mt-5">
-                <a target={"_blank"} className={"stretched-link"} href="https://github.com/Edgarmejiav/irregular-verbs">
+                <a target={"_blank"}  href="https://github.com/Edgarmejiav/irregular-verbs">
                     source code
                 </a>
                 - {new Date().getFullYear()}
