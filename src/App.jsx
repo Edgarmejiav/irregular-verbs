@@ -1,7 +1,6 @@
-import {useEffect, useState} from 'react'
+import { useState} from 'react'
 // import verbs from './verbs.json'
 import verbs from './verbsMorUsed.json'
-import {IconVolumen} from "./IconVolumen";
 import {BaseVerb} from "./components/BaseVerb";
 import {Description} from "./components/Description";
 import {IputVerbs} from "./components/IputVerbs";
@@ -24,7 +23,7 @@ function App() {
                     <Description des={verb["description"]}/>
                     <IputVerbs setRandon={setRandon} label="Past simple"
                                pastSimple={verb[2]}
-                               pastParticiple={verb[3]} length={length}> </IputVerbs>
+                               pastParticiple={verb[3]} length={keys.length}> </IputVerbs>
                 </div>
 
             </div>
