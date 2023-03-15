@@ -1,15 +1,20 @@
 import {useEffect, useState} from 'react'
-import verbs from './verbs.json'
+// import verbs from './verbs.json'
+import verbs from './verbsMorUsed.json'
 import {IconVolumen} from "./IconVolumen";
+import {BaseVerb} from "./components/BaseVerb";
+import {Description} from "./components/Description";
+import {IputVerbs} from "./components/IputVerbs";
 
-function generateRandomNumber(n) {
+export function generateRandomNumber(n) {
     return Math.floor(Math.random() * n) + 1;
 }
 
 const keys = Object.keys(verbs).map(x => x)
+
 function App() {
-    const [randon, setRandon] = useState(generateRandomNumber(keys.length))
-    const verb = verbs[keys[randon]][0]
+    const [randon, setRandon] = useState(generateRandomNumber(keys.length - 1))
+    const verb = verbs[keys[randon] ?? keys[1]][0]
     return (
         <>
             <div className="mt-5">
@@ -19,12 +24,12 @@ function App() {
                     <Description des={verb["description"]}/>
                     <IputVerbs setRandon={setRandon} label="Past simple"
                                pastSimple={verb[2]}
-                               pastParticiple={verb[3]}> </IputVerbs>
+                               pastParticiple={verb[3]} length={length}> </IputVerbs>
                 </div>
 
             </div>
             <footer className="blockquote-footer text-center mt-5">
-                <a target={"_blank"}  href="https://github.com/Edgarmejiav/irregular-verbs">
+                <a target={"_blank"} href="https://github.com/Edgarmejiav/irregular-verbs">
                     source code
                 </a>
                 - {new Date().getFullYear()}
@@ -33,97 +38,7 @@ function App() {
     )
 }
 
-function BaseVerb({verb}) {
-    function handleVoice() {
-        const text = new SpeechSynthesisUtterance(verb)
-        speechSynthesis.speak(text)
-    }
-
-    return <div className="row text-center ">
-        <h2 className="col-md-auto my-2 display-5">{verb} </h2>
-        <div className={"col-md-auto align-self-center"}>
-            <IconVolumen onClick={handleVoice}/>
-        </div>
-    </div>
-}
-
-function IputVerbs({pastSimple, pastParticiple, setRandon}) {
-    const [simple, setSimple] = useState("")
-    const [participle, setParticiple] = useState("")
-    const [validatePastSimple, setValidatePastSimple] = useState(false)
-    const [validatePastParticiple, setValidatePastParticiple] = useState(false)
 
 
-    function handleOnChange(e) {
-        setSimple(e.target.value)
-
-    }
-
-    useEffect(() => {
-        setValidatePastSimple(pastSimple.some(x => x.toLowerCase() === simple.toLowerCase()))
-        setValidatePastParticiple(pastParticiple.some(x => x.toLowerCase() === participle.toLowerCase()))
-    }, [simple, participle])
-
-    function handleParticipleOnChange(e) {
-        setParticiple(e.target.value)
-
-    }
-
-    function handleNext() {
-        // if (e.code === "Enter") {
-        if (validatePastSimple && validatePastParticiple) {
-            setRandon(generateRandomNumber(keys.length))
-            setSimple("")
-            setParticiple("")
-            setValidatePastSimple(false)
-            setValidatePastParticiple(false)
-        }
-        // }
-    }
-
-
-    function hanldeShow() {
-        setSimple(Array.isArray(pastSimple) ? pastSimple[0] : pastSimple)
-        setParticiple(Array.isArray(pastParticiple) ? pastParticiple[0] : pastParticiple)
-    }
-
-
-    return <form>
-        <div className={` mb-3 ${validatePastSimple ? "was-validated" : ""}`}>
-
-            <input type="text" className="form-control my-2"
-                   placeholder={"Past simple"}
-                   value={simple}
-                   onChange={handleOnChange}
-            />
-            <div className={"text-center"}>
-                {pastSimple.length > 1 && validatePastSimple ? pastSimple.join("/") : ""}
-            < /div>
-        </div>
-        <div className={` mb-3 ${validatePastParticiple ? "was-validated" : ""}`}>
-
-            <input type="text" className="form-control my-2"
-                   placeholder="Past Participle"
-                   value={participle}
-                   onChange={handleParticipleOnChange}
-            />
-            <div className={"text-center"}>
-                {pastParticiple.length > 1 && validatePastParticiple ? pastParticiple.join("/") : ""}
-            < /div>
-        </div>
-        <div className="text-center">
-            <button className="btn my-2 btn-primary " type="button" onClick={hanldeShow}>show</button>
-            <button className="btn my-2  btn-success" type="button" onClick={handleNext}>next</button>
-        </div>
-    </form>
-
-}
-
-function Description({des}) {
-
-    return Array.isArray(des) ?
-        <figcaption className="col my-2 blockquote-footer">"{des.join("/")}" </figcaption>
-        : <figcaption className="col my-2 blockquote-footer">"{des}"</figcaption>
-}
 
 export default App

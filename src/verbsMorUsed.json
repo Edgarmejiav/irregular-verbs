@@ -156,10 +156,10 @@
     "burn": [
         {
             "2": [
-                "burnt / burned"
+                "burnt " ," burned"
             ],
             "3": [
-                "burnt / burned"
+                "burnt " ," burned"
             ],
             "description": []
         }
@@ -277,10 +277,10 @@
     "dream": [
         {
             "2": [
-                "dreamed /dreamt"
+                "dreamed" ,"dreamt"
             ],
             "3": [
-                "dreamed / dreamt"
+                "dreamed" ,"dreamt"
             ],
             "description": []
         }
@@ -401,7 +401,7 @@
                 "got"
             ],
             "3": [
-                "got / gotten"
+                "got " ," gotten"
             ],
             "description": []
         }
@@ -541,10 +541,10 @@
     "learn": [
         {
             "2": [
-                "learnt / learned"
+                "learnt " ," learned"
             ],
             "3": [
-                "learnt / learned"
+                "learnt " ," learned"
             ],
             "description": []
         }
