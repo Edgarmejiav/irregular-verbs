@@ -14,8 +14,8 @@ export function IputVerbs({pastSimple, pastParticiple, setRandon, length}) {
     }
 
     useEffect(() => {
-        setValidatePastSimple(pastSimple.some(x => x.toLowerCase() === simple.toLowerCase()))
-        setValidatePastParticiple(pastParticiple.some(x => x.toLowerCase() === participle.toLowerCase()))
+        setValidatePastSimple(pastSimple.some(x => x.toLowerCase().trim() === simple.toLowerCase().trim()))
+        setValidatePastParticiple(pastParticiple.some(x => x.toLowerCase().trim() === participle.toLowerCase().trim()))
     }, [simple, participle])
 
     function handleParticipleOnChange(e) {
