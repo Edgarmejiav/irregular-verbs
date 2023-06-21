@@ -6,7 +6,6 @@ import verbs from './verbsMorUsed.json'
 import {BaseVerb} from "./components/BaseVerb";
 import {Description} from "./components/Description";
 import {IputVerbs} from "./components/IputVerbs";
-import {Analytics} from "@vercel/analytics/react";
 
 export function generateRandomNumber(n) {
     return Math.floor(Math.random() * n) + 1;
