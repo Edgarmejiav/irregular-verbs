@@ -1,9 +1,12 @@
-import { useState} from 'react'
+import React, { useState} from 'react'
+import { Analytics } from '@vercel/analytics/react';
+
 // import verbs from './verbs.json'
 import verbs from './verbsMorUsed.json'
 import {BaseVerb} from "./components/BaseVerb";
 import {Description} from "./components/Description";
 import {IputVerbs} from "./components/IputVerbs";
+import {Analytics} from "@vercel/analytics/react";
 
 export function generateRandomNumber(n) {
     return Math.floor(Math.random() * n) + 1;
@@ -16,6 +19,8 @@ function App() {
     const verb = verbs[keys[randon] ?? keys[1]][0]
     return (
         <>
+            <Analytics mode={'production'} />;
+
             <div className="mt-5">
                 <h1 className={"text-center"}>Irregular verbs </h1>
                 <div className="container d-flex align-items-center flex-column">
